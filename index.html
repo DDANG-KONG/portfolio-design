@@ -1048,30 +1048,27 @@
        GAME LAYOUT (2-column grid)
     ════════════════════════════ */
     .games-layout {
-      display: grid; grid-template-columns: 340px 1fr;
-      gap: 4px; width: 100%; max-width: 1100px; margin-top: 40px;
-      align-items: stretch;
+      display: grid; grid-template-columns: 1fr 1fr;
+      column-gap: 4px; row-gap: 20px;
+      width: 100%; max-width: 920px; margin-top: 40px;
     }
     .game-gallery {
-      background: var(--tile-2);
-      display: flex; flex-direction: column; min-height: 0;
-    }
-    .game-gallery--light {
-      background: rgba(0,0,0,.04); border: 1px solid rgba(0,0,0,.07);
+      display: flex; flex-direction: column;
+      min-width: 0; /* critical: grid item must not grow beyond column */
     }
     .game-gallery__label {
-      padding: 14px 16px 10px; font-size: 10px; font-weight: 700;
+      padding: 0 0 8px; font-size: 10px; font-weight: 700;
       letter-spacing: .1em; text-transform: uppercase;
-      color: rgba(255,255,255,.28); flex-shrink: 0;
+      color: rgba(255,255,255,.35); flex-shrink: 0;
     }
-    .game-gallery--light .game-gallery__label { color: rgba(0,0,0,.3); }
+    .game-gallery--light .game-gallery__label { color: rgba(0,0,0,.35); }
     .game-gallery__track {
-      flex: 1; display: flex; flex-direction: row; align-items: flex-start;
+      display: flex; flex-direction: row; align-items: flex-start;
       gap: 8px; overflow-x: auto; overflow-y: hidden;
-      padding: 8px 16px 16px; scrollbar-width: thin;
-      scrollbar-color: rgba(255,255,255,.18) transparent; cursor: grab;
+      padding: 0 0 12px; scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,.2) transparent; cursor: grab;
     }
-    .game-gallery--light .game-gallery__track { scrollbar-color: rgba(0,0,0,.12) transparent; }
+    .game-gallery--light .game-gallery__track { scrollbar-color: rgba(0,0,0,.15) transparent; }
 
     /* ════════════════════════════
        ARTICLE LINK
@@ -1352,10 +1349,6 @@
       <p class="game-desc">슬라임이 주인공인 장편 RPG. 13살부터 2년간 기획·개발·아트 혼자 담당.</p>
       <a href="https://namu.wiki/w/%EC%8A%AC%EB%9D%BC%EC%9E%84%20%EC%8A%A4%ED%81%AC%EB%9F%BC%EB%B8%94" target="_blank" class="game-link">나무위키에서 보기 <svg viewBox="0 0 12 12"><path d="M6.5 1H11v4.5M11 1L5 7M1 3h3.5v8H11V7"/></svg></a>
     </div>
-    <div class="game-gallery">
-      <p class="game-gallery__label">스크린샷</p>
-      <div class="game-gallery__track" id="g-ss"></div>
-    </div>
     <!-- 우리 아빠는 용사랍니다 -->
     <div class="game-card">
       <div class="game-card__thumb">
@@ -1366,8 +1359,13 @@
       <p class="game-desc">두 주인공을 교차 플레이하는 액션 RPG. 3막 구성, 플레이 타임 4시간.</p>
       <a href="https://store.steampowered.com/app/3429120" target="_blank" class="game-link">Steam에서 보기 <svg viewBox="0 0 12 12"><path d="M6.5 1H11v4.5M11 1L5 7M1 3h3.5v8H11V7"/></svg></a>
     </div>
+    <!-- 갤러리 row -->
     <div class="game-gallery">
-      <p class="game-gallery__label">스크린샷</p>
+      <p class="game-gallery__label">슬라임 스크럼블 스크린샷</p>
+      <div class="game-gallery__track" id="g-ss"></div>
+    </div>
+    <div class="game-gallery">
+      <p class="game-gallery__label">우리 아빠는 용사랍니다 스크린샷</p>
       <div class="game-gallery__track" id="g-md"></div>
     </div>
   </div>
@@ -1399,10 +1397,6 @@
       <p class="game-desc" style="color:rgba(0,0,0,.55);">신이 되어 세상을 구하거나 삭제하는 어드벤처 게임.</p>
       <a href="https://store.steampowered.com/app/3425720" target="_blank" class="game-link" style="color:var(--ink);">Steam에서 보기 <svg viewBox="0 0 12 12"><path d="M6.5 1H11v4.5M11 1L5 7M1 3h3.5v8H11V7"/></svg></a>
     </div>
-    <div class="game-gallery game-gallery--light">
-      <p class="game-gallery__label">스크린샷</p>
-      <div class="game-gallery__track" id="g-shwa"></div>
-    </div>
     <!-- 모두를 위한 정통 RPG -->
     <div class="game-card" style="background:#eaeaec;">
       <div class="game-card__thumb">
@@ -1416,8 +1410,13 @@
       <p class="game-desc" style="color:rgba(0,0,0,.55);">개발자가 되어 게임을 만드는 시뮬레이션. Google Play 인기 유료 최고 6위.</p>
       <a href="https://store.steampowered.com/app/3425350" target="_blank" class="game-link" style="color:var(--ink);">Steam에서 보기 <svg viewBox="0 0 12 12"><path d="M6.5 1H11v4.5M11 1L5 7M1 3h3.5v8H11V7"/></svg></a>
     </div>
+    <!-- 갤러리 row -->
     <div class="game-gallery game-gallery--light">
-      <p class="game-gallery__label">스크린샷</p>
+      <p class="game-gallery__label">SHWA 스크린샷</p>
+      <div class="game-gallery__track" id="g-shwa"></div>
+    </div>
+    <div class="game-gallery game-gallery--light">
+      <p class="game-gallery__label">모두를 위한 정통 RPG 스크린샷</p>
       <div class="game-gallery__track" id="g-rpg"></div>
     </div>
   </div>
