@@ -1086,18 +1086,20 @@
       min-width: 0; /* critical: grid item must not grow beyond column */
     }
     .game-gallery__label {
-      padding: 0 0 8px; font-size: 10px; font-weight: 700;
+      padding: 0 0 10px; font-size: 10px; font-weight: 700;
       letter-spacing: .1em; text-transform: uppercase;
       color: rgba(255,255,255,.35); flex-shrink: 0;
     }
     .game-gallery--light .game-gallery__label { color: rgba(0,0,0,.35); }
     .game-gallery__track {
       display: flex; flex-direction: row; align-items: flex-start;
-      gap: 8px; overflow-x: auto; overflow-y: hidden;
-      padding: 0 0 12px; scrollbar-width: thin;
+      gap: 10px; overflow-x: auto; overflow-y: hidden;
+      padding: 0 0 14px; scrollbar-width: thin;
       scrollbar-color: rgba(255,255,255,.2) transparent; cursor: grab;
     }
     .game-gallery--light .game-gallery__track { scrollbar-color: rgba(0,0,0,.15) transparent; }
+    /* Full-width standalone gallery (AHSRAI section, etc.) */
+    .game-gallery--full { width: 100%; max-width: none; }
 
     /* ════════════════════════════
        ARTICLE LINK
@@ -1417,7 +1419,7 @@
   <div class="bg-img" style="background-image:url('assets/case1.png');"></div>
   <div class="bg-grad"></div>
   <h2 class="case-title reveal">1인 제작 게임 '파티랏슈!!'<br>글로벌 런칭</h2>
-  <p class="case-sub reveal reveal-d1">스무 살, 해외 퍼블리셔와의 글로벌 런칭 준비가 전환점이 되었습니다. '효율적이고 리스크를 예방하는 프로세스'에 대한 고민을 하게 된 계기입니다.</p>
+  <p class="case-sub reveal reveal-d1">스무 살, 해외 퍼블리셔와의 글로벌 런칭 준비가 전환점이 되었습니다.<br>'효율적이고 리스크를 예방하는 프로세스'에 대한 고민을 하게 된 계기입니다.</p>
 </section>
 
 <!-- ════════════════════════════════
@@ -1452,8 +1454,8 @@
     </div>
   </div>
 
-  <div class="reveal reveal-d4" style="width:100%;max-width:1040px;margin-top:48px;">
-    <p style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(0,0,0,.35);margin-bottom:8px;">파티랏슈!! 스크린샷</p>
+  <div class="reveal reveal-d4" style="width:100%;max-width:1200px;margin-top:48px;">
+    <p style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(0,0,0,.35);margin-bottom:10px;">파티랏슈!! 스크린샷</p>
     <div class="game-gallery__track game-gallery--light" id="g-pr" style="scrollbar-color:rgba(0,0,0,.15) transparent;"></div>
   </div>
 </section>
@@ -1516,22 +1518,7 @@
     </div>
   </div>
 
-  <div class="stats-row reveal reveal-d4" style="margin-top:36px;">
-    <div class="stat">
-      <p class="stat__num" data-count="5" data-suffix="개국어">5개국어</p>
-      <p class="stat__label stat__label--dark">로컬라이제이션</p>
-    </div>
-    <div class="stat">
-      <p class="stat__num" data-count="3" data-suffix="년 제작">3년 제작</p>
-      <p class="stat__label stat__label--dark">1인 개발</p>
-    </div>
-    <div class="stat">
-      <p class="stat__num" style="font-size:clamp(18px,2vw,24px);">글로벌<br>동시 런칭</p>
-      <p class="stat__label stat__label--dark">HIKE Inc. 퍼블리싱</p>
-    </div>
-  </div>
-
-  <a href="https://www.thisisgame.com/articles/166921" target="_blank" class="article-link reveal reveal-d5" style="margin-top:40px;">
+  <a href="https://www.thisisgame.com/articles/166921" target="_blank" class="article-link reveal reveal-d4" style="margin-top:40px;">
     <span class="article-link__icon">📰</span>
     <span class="article-link__text">디스이즈게임 — 파티랏슈!! 글로벌 5개국어 런칭 소개 기사</span>
     <svg viewBox="0 0 14 14"><path d="M5 1H1v12h12V9M8 1h5v5M13 1L7 7"/></svg>
@@ -1593,40 +1580,23 @@
   <p class="eyebrow eyebrow--dark reveal">04</p>
   <h2 class="headline headline--dark reveal reveal-d1">멀티 게임 기획과 G-STAR 전시</h2>
   <p class="subhead subhead--dark reveal reveal-d2">
-    2인 협동 액션 게임인 AHSRAI 의 기획 및 팀장으로, G-STAR 2025 전시를 총괄하였습니다.
+    2인 협동 액션 게임인 AHSRAI 의 기획 및 팀장으로,<br>G-STAR 2025 전시를 총괄하였습니다.
   </p>
 
-  <div class="games-layout games-layout--wide reveal reveal-d3">
-    <div class="game-card">
-      <div class="game-card__thumb">
-        <img src="assets/GameCards/AHSRAI.png" alt="AHSRAI">
-      </div>
-      <div class="game-card__top"><span class="game-year">2025</span><span class="game-badge">G-STAR 2025 BIC</span></div>
-      <h3 class="game-title">AHSRAI</h3>
-      <p class="game-desc">조명을 조종하는 플레이어와, 그림자를 통해 이동하는 플레이어의 협동 게임입니다.</p>
-    </div>
-    <div class="game-gallery">
-      <p class="game-gallery__label">AHSRAI 스크린샷</p>
-      <div class="game-gallery__track" id="g-ahsrai-ss"></div>
-    </div>
-  </div>
-
-  <!-- 트레일러 영상 -->
-  <div class="reveal reveal-d4" style="width:100%;max-width:720px;margin-top:44px;border-radius:14px;overflow:hidden;position:relative;padding-bottom:min(405px, 56.25%);height:0;box-shadow:0 12px 48px rgba(0,0,0,.6);">
+  <!-- 트레일러 영상 (중앙 상단) -->
+  <div class="reveal reveal-d3" style="width:100%;max-width:840px;margin-top:36px;border-radius:14px;overflow:hidden;position:relative;padding-bottom:min(472px,56.25%);height:0;box-shadow:0 12px 48px rgba(0,0,0,.6);">
     <iframe src="https://www.youtube.com/embed/J9rMPw8Xd14" title="AHSRAI 트레일러" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
   </div>
 
-  <!-- 수상 -->
-  <div class="reveal reveal-d4" style="margin-top:40px;width:100%;max-width:720px;">
-    <a class="article-link" style="cursor:default;pointer-events:none;">
-      <span class="article-link__icon">🏆</span>
-      <span class="article-link__text" style="font-weight:600;">한국경제TV 우수작품상 수상작</span>
-    </a>
+  <!-- 스크린샷 갤러리 -->
+  <div class="game-gallery reveal reveal-d4" style="width:100%;max-width:840px;margin-top:32px;">
+    <p class="game-gallery__label">AHSRAI 스크린샷</p>
+    <div class="game-gallery__track" id="g-ahsrai-ss"></div>
   </div>
 
   <!-- G-STAR 전시 통계 -->
-  <p class="eyebrow eyebrow--dark reveal reveal-d4" style="margin-top:36px;margin-bottom:16px;">G-STAR 2025 전시 결과</p>
-  <div class="reveal reveal-d4" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;width:100%;max-width:720px;background:rgba(255,255,255,.1);border-radius:12px;overflow:hidden;">
+  <p class="eyebrow eyebrow--dark reveal reveal-d4" style="margin-top:48px;margin-bottom:16px;">G-STAR 2025 전시 결과</p>
+  <div class="reveal reveal-d4" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;width:100%;max-width:840px;background:rgba(255,255,255,.1);border-radius:12px;overflow:hidden;">
     <div style="background:var(--tile-1);padding:28px 16px;text-align:center;">
       <p style="font-size:clamp(22px,2.8vw,30px);font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:6px;background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">850–1,000</p>
       <p style="font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--muted);margin-top:4px;">4일간 총 방문객 (약 900명)</p>
@@ -1650,9 +1620,9 @@
 
   <p class="eyebrow eyebrow--dark reveal">기획서</p>
   <h2 class="headline headline--dark reveal reveal-d1" style="margin-bottom:12px;">AHSRAI 메인 기획서</h2>
-  <p class="subhead subhead--dark reveal reveal-d2" style="margin-bottom:36px;">37페이지 · 디자인 슬라이드 · 클릭하면 크게 볼 수 있습니다</p>
+  <p class="subhead subhead--dark reveal reveal-d2" style="margin-bottom:36px;">조명을 담당하는 플레이어와 그림자를 통해 이동하는 플레이어가 서로 협동하여 진행하는 액션 어드벤쳐입니다.<br>한국경제TV 우수작품상을 수상하였습니다.</p>
 
-  <div id="g-design" class="design-gallery-track" style="width:min(1200px,100vw - 96px);"></div>
+  <div id="g-design" class="design-gallery-track" style="width:min(1400px,100vw - 48px);"></div>
   <p id="g-design-status" style="font-size:13px;color:rgba(255,255,255,.3);margin-top:8px;text-align:center;"></p>
 </section>
 
@@ -2334,25 +2304,24 @@ function initImgGallery({ galleryId, statusId, images = [], thumbHeight = 160 })
 }
 
 /* ── 갤러리 초기화 ── */
-initImgGallery({ galleryId: 'g-pr', thumbHeight: 240, images: [
+initImgGallery({ galleryId: 'g-pr', thumbHeight: 320, images: [
   'assets/Section6-Partyrush/1.png','assets/Section6-Partyrush/2.png',
   'assets/Section6-Partyrush/3.png','assets/Section6-Partyrush/4.jpg',
-  'assets/Section6-Partyrush/5.jpg','assets/Section6-Partyrush/6.png',
-  'assets/Section6-Partyrush/7.png'
+  'assets/Section6-Partyrush/5.jpg','assets/Section6-Partyrush/7.png'
 ]});
-initImgGallery({ galleryId: 'g-rh', thumbHeight: 240, images: [
+initImgGallery({ galleryId: 'g-rh', thumbHeight: 320, images: [
   'assets/Section9-RAISEHELL/1.png','assets/Section9-RAISEHELL/2.png',
   'assets/Section9-RAISEHELL/3.png','assets/Section9-RAISEHELL/4.png',
   'assets/Section9-RAISEHELL/5.png','assets/Section9-RAISEHELL/6.png',
   'assets/Section9-RAISEHELL/7.png'
 ]});
-initImgGallery({ galleryId: 'g-ahsrai-ss', thumbHeight: 240, images: [
+initImgGallery({ galleryId: 'g-ahsrai-ss', thumbHeight: 320, images: [
   'assets/Section-AHSRAI-Screenshot/AHSRAI_Screenshot_01.png',
   'assets/Section-AHSRAI-Screenshot/AHSRAI_Screenshot_02.png',
   'assets/Section-AHSRAI-Screenshot/AHSRAI_Screenshot_03.png',
   'assets/Section-AHSRAI-Screenshot/AHSRAI_Screenshot_04.png'
 ]});
-initImgGallery({ galleryId: 'g-design', statusId: 'g-design-status', thumbHeight: 300,
+initImgGallery({ galleryId: 'g-design', statusId: 'g-design-status', thumbHeight: 420,
   images: Array.from({length:37}, function(_,i){ return 'assets/Section-AHSRAI-Design/slide_' + String(i+1).padStart(2,'0') + '.png'; })
 });
 </script>
