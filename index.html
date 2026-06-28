@@ -516,7 +516,7 @@
       font-size: clamp(72px,11vw,120px); font-weight: 900;
       line-height: 1; letter-spacing: -.06em;
       color: var(--primary); opacity: .35;
-      margin-bottom: -8px;
+      margin-bottom: 28px;
       pointer-events: none; user-select: none;
       text-shadow: 0 0 80px rgba(41,151,255,.6);
     }
@@ -528,18 +528,35 @@
     .case-title {
       font-size: clamp(36px,5.5vw,60px); font-weight: 700;
       color: var(--on-dark); letter-spacing: -.03em; line-height: 1.1;
-      max-width: 720px; margin-bottom: 24px;
+      max-width: 720px; margin-bottom: 32px;
       text-shadow: 0 2px 24px rgba(0,0,0,.85), 0 1px 6px rgba(0,0,0,.9);
     }
     .case-sub {
       font-size: 20px; font-weight: 300; color: rgba(255,255,255,.9);
-      line-height: 1.65; max-width: 860px;
+      line-height: 1.65; max-width: min(1100px, calc(100vw - 80px));
       text-shadow: 0 1px 12px rgba(0,0,0,.8);
     }
     .case-intro { justify-content: flex-end; padding-bottom: 88px; overflow: hidden; }
     .case-intro .bg-grad {
       background: linear-gradient(to bottom,
         rgba(0,0,0,.25) 0%, rgba(0,0,0,.15) 45%, rgba(0,0,0,.78) 100%);
+    }
+    /* Smooth entry: top of each case-intro blends from previous section's dark bg */
+    .case-intro::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 38%;
+      background: linear-gradient(to bottom, rgba(0,0,0,.92) 0%, transparent 100%);
+      z-index: 2; pointer-events: none;
+    }
+    /* Smooth section edge blending — subtle top/bottom fade for all content sections */
+    section:not(.cover):not(.case-intro):not(.closing)::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 90px;
+      background: linear-gradient(to bottom, rgba(0,0,0,.45) 0%, transparent 100%);
+      z-index: 1; pointer-events: none;
+    }
+    section:not(.cover):not(.case-intro):not(.closing)::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 90px;
+      background: linear-gradient(to top, rgba(0,0,0,.45) 0%, transparent 100%);
+      z-index: 1; pointer-events: none;
     }
     .case-accent {
       width: 48px; height: 2px; border-radius: 2px;
@@ -1638,7 +1655,7 @@
   </div>
 
   <!-- 스크린샷 갤러리 -->
-  <div class="game-gallery reveal reveal-d4" style="width:100%;max-width:840px;margin-top:32px;">
+  <div class="game-gallery reveal reveal-d4" style="width:min(1400px,100vw - 48px);margin-top:32px;">
     <p class="game-gallery__label">AHSRAI 스크린샷</p>
     <div class="game-gallery__track" id="g-ahsrai-ss"></div>
   </div>
@@ -1669,7 +1686,7 @@
 
   <p class="eyebrow eyebrow--dark reveal">기획서</p>
   <h2 class="headline headline--dark reveal reveal-d1" style="margin-bottom:12px;">AHSRAI 메인 기획서</h2>
-  <p class="subhead subhead--dark reveal reveal-d2" style="margin-bottom:36px;max-width:900px;">조명을 담당하는 플레이어와 그림자를 통해 이동하는 플레이어가 서로 협동하여 진행하는 액션 어드벤쳐입니다.<br>한국경제TV 우수작품상을 수상하였습니다.</p>
+  <p class="subhead subhead--dark reveal reveal-d2" style="margin-bottom:36px;max-width:980px;">조명을 담당하는 플레이어와 그림자를 통해 이동하는 플레이어가 서로 협동하여 진행하는<br>액션 어드벤쳐 게임으로, 한국경제TV 우수작품상을 수상하였습니다.</p>
 
   <div id="g-design" class="design-gallery-track" style="width:min(1400px,100vw - 48px);"></div>
   <p id="g-design-status" style="font-size:13px;color:rgba(255,255,255,.3);margin-top:8px;text-align:center;"></p>
@@ -2146,17 +2163,18 @@ document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el
   update();
 })();
 
-/* ── Case intro bg: scroll-driven fade for ALL .case-intro sections ── */
+/* ── Case intro bg: scroll-driven reveal — starts 1.8×vh before section top ── */
 (function() {
   document.querySelectorAll('.case-intro').forEach(function(section) {
     const bgImg = section.querySelector('.bg-img');
     if (!bgImg) return;
     bgImg.style.opacity = '0';
     function update() {
-      const vh = window.innerHeight;
+      const vh  = window.innerHeight;
       const top = section.getBoundingClientRect().top;
-      const progress = Math.max(0, Math.min(1, (vh - top) / vh));
-      bgImg.style.opacity = (progress * 0.65).toFixed(3);
+      /* start revealing 1.8 screens before entry; reach full at top=0 */
+      const progress = Math.max(0, Math.min(1, (vh * 1.8 - top) / (vh * 1.8)));
+      bgImg.style.opacity = (progress * 0.88).toFixed(3);
     }
     window.addEventListener('scroll', update, { passive: true });
     update();
@@ -2406,7 +2424,7 @@ initImgGallery({ galleryId: 'g-ahsrai-ss', thumbHeight: 320, images: [
   'assets/Section-AHSRAI-Screenshot/AHSRAI_Screenshot_03.png',
   'assets/Section-AHSRAI-Screenshot/AHSRAI_Screenshot_04.png'
 ]});
-initImgGallery({ galleryId: 'g-design', statusId: 'g-design-status', thumbHeight: 420,
+initImgGallery({ galleryId: 'g-design', statusId: 'g-design-status', thumbHeight: 540,
   images: Array.from({length:37}, function(_,i){ return 'assets/Section-AHSRAI-Design/slide_' + String(i+1).padStart(2,'0') + '.png'; })
 });
 </script>
