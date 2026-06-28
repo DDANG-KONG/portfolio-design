@@ -507,6 +507,19 @@
       margin-bottom: -20px; font-variant-numeric: tabular-nums;
       position: relative; z-index: 2;
     }
+    /* Big blue number beside case title */
+    .case-title-wrap {
+      display: flex; align-items: center; gap: 0;
+      position: relative; z-index: 2;
+    }
+    .case-bg-num {
+      font-size: clamp(100px,13vw,160px); font-weight: 900;
+      line-height: 1; letter-spacing: -.06em; flex-shrink: 0;
+      color: var(--primary); opacity: .28;
+      margin-right: 16px;
+      pointer-events: none; user-select: none;
+      text-shadow: 0 0 60px rgba(41,151,255,.5);
+    }
     .case-eyebrow {
       font-size: 11px; font-weight: 700; letter-spacing: .15em;
       text-transform: uppercase; color: var(--primary-dark);
@@ -1198,9 +1211,9 @@
 <div class="g-nav__mobile" id="navMobile" aria-hidden="true">
   <ul>
     <li><a href="#about">About</a></li>
-    <li><a href="#games">여정</a></li>
+    <li><a href="#games">Games</a></li>
     <li><a href="#case1">파티랏슈</a></li>
-    <li><a href="#case2">AHSRAI</a></li>
+    <li><a href="#case2">G-STAR</a></li>
     <li><a href="#case3">Blade&amp;Soul</a></li>
     <li><a href="#closing">Contact</a></li>
   </ul>
@@ -1211,9 +1224,9 @@
   <a class="g-nav__logo" href="#cover">윤세찬</a>
   <ul class="g-nav__links">
     <li><a href="#about">About</a></li>
-    <li><a href="#games">여정</a></li>
+    <li><a href="#games">Games</a></li>
     <li><a href="#case1">파티랏슈</a></li>
-    <li><a href="#case2">AHSRAI</a></li>
+    <li><a href="#case2">G-STAR</a></li>
     <li><a href="#case3">Blade&amp;Soul</a></li>
     <li><a href="#closing">Contact</a></li>
   </ul>
@@ -1420,7 +1433,10 @@
 <section class="case-intro" id="case1">
   <div class="bg-img" style="background-image:url('assets/case1.png');"></div>
   <div class="bg-grad"></div>
-  <h2 class="case-title reveal">1인 제작 게임 '파티랏슈!!'<br>글로벌 런칭</h2>
+  <div class="case-title-wrap reveal">
+    <span class="case-bg-num">1</span>
+    <h2 class="case-title" style="margin-bottom:0;">1인 제작 게임 '파티랏슈!!'<br>글로벌 런칭</h2>
+  </div>
   <p class="case-sub reveal reveal-d1">스무 살, 해외 퍼블리셔와의 글로벌 런칭 준비가 전환점이 되었습니다.<br>'효율적이고 리스크를 예방하는 프로세스'에 대한 고민을 하게 된 계기입니다.</p>
 </section>
 
@@ -1534,7 +1550,10 @@
 <section class="case-intro" id="case2">
   <div class="bg-img" style="background-image:url('assets/case2.png');"></div>
   <div class="bg-grad"></div>
-  <h2 class="case-title reveal">팀 프로젝트 기획과<br>G-STAR 전시 총괄</h2>
+  <div class="case-title-wrap reveal">
+    <span class="case-bg-num">2</span>
+    <h2 class="case-title" style="margin-bottom:0;">팀 프로젝트 기획과<br>G-STAR 전시 총괄</h2>
+  </div>
   <p class="case-sub reveal reveal-d1">게임디자인학과에서 팀 프로젝트를 총괄했던 경험을 소개합니다.</p>
 </section>
 
@@ -1622,7 +1641,7 @@
 
   <p class="eyebrow eyebrow--dark reveal">기획서</p>
   <h2 class="headline headline--dark reveal reveal-d1" style="margin-bottom:12px;">AHSRAI 메인 기획서</h2>
-  <p class="subhead subhead--dark reveal reveal-d2" style="margin-bottom:36px;">조명을 담당하는 플레이어와 그림자를 통해 이동하는 플레이어가 서로 협동하여 진행하는 액션 어드벤쳐입니다.<br>한국경제TV 우수작품상을 수상하였습니다.</p>
+  <p class="subhead subhead--dark reveal reveal-d2" style="margin-bottom:36px;max-width:900px;">조명을 담당하는 플레이어와 그림자를 통해 이동하는 플레이어가 서로 협동하여 진행하는 액션 어드벤쳐입니다.<br>한국경제TV 우수작품상을 수상하였습니다.</p>
 
   <div id="g-design" class="design-gallery-track" style="width:min(1400px,100vw - 48px);"></div>
   <p id="g-design-status" style="font-size:13px;color:rgba(255,255,255,.3);margin-top:8px;text-align:center;"></p>
@@ -1634,7 +1653,10 @@
 <section class="case-intro" id="case3">
   <div class="bg-img" style="background-image:url('assets/case3.png');"></div>
   <div class="bg-grad"></div>
-  <h2 class="case-title reveal">엔씨 Blade &amp; Soul PM</h2>
+  <div class="case-title-wrap reveal">
+    <span class="case-bg-num">3</span>
+    <h2 class="case-title" style="margin-bottom:0;">엔씨 Blade &amp; Soul PM</h2>
+  </div>
   <p class="case-sub reveal reveal-d1">엔씨의 글로벌 MMORPG 'Blade &amp; Soul' 의 PM으로 재직하였습니다. 거기서의 업무 성과를 소개합니다.</p>
 </section>
 
