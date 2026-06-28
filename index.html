@@ -378,8 +378,7 @@
     .tl-event + .tl-event { margin-top: 4px; }
 
     /* Sections 02–03: transparent so Spline shows through; Spline fades via JS */
-    #about { background: rgba(0,0,0,.75); }
-    #games { background: transparent; }
+    #about, #games { background: transparent; }
     #about .headline--light { color: var(--on-dark); }
     #about .tl-event { color: rgba(255,255,255,.82); }
     #about .tl-event--highlight { color: var(--primary-dark); }
@@ -2065,7 +2064,7 @@ document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el
   let gamesY = gamesEl.getBoundingClientRect().top + window.scrollY;
 
   function update() {
-    const progress = Math.max(0, Math.min(1, window.scrollY / gamesY));
+    const progress = Math.max(0, Math.min(1, (window.scrollY / gamesY) * 2.2));
     splineEl.style.opacity = (1 - progress).toFixed(3);
   }
 
