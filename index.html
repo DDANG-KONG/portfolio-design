@@ -511,6 +511,7 @@
     .case-title-wrap {
       display: flex; flex-direction: column; align-items: center;
       position: relative; z-index: 2;
+      margin-bottom: 40px;
     }
     .case-bg-num {
       font-size: clamp(72px,11vw,120px); font-weight: 900;
@@ -540,23 +541,6 @@
     .case-intro .bg-grad {
       background: linear-gradient(to bottom,
         rgba(0,0,0,.25) 0%, rgba(0,0,0,.15) 45%, rgba(0,0,0,.78) 100%);
-    }
-    /* Smooth entry: top of each case-intro blends from previous section's dark bg */
-    .case-intro::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 38%;
-      background: linear-gradient(to bottom, rgba(0,0,0,.92) 0%, transparent 100%);
-      z-index: 2; pointer-events: none;
-    }
-    /* Smooth section edge blending — subtle top/bottom fade for all content sections */
-    section:not(.cover):not(.case-intro):not(.closing)::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 90px;
-      background: linear-gradient(to bottom, rgba(0,0,0,.45) 0%, transparent 100%);
-      z-index: 1; pointer-events: none;
-    }
-    section:not(.cover):not(.case-intro):not(.closing)::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 90px;
-      background: linear-gradient(to top, rgba(0,0,0,.45) 0%, transparent 100%);
-      z-index: 1; pointer-events: none;
     }
     .case-accent {
       width: 48px; height: 2px; border-radius: 2px;
@@ -725,9 +709,9 @@
     .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
     footer {
-      background: var(--parchment); padding: 48px 48px; text-align: center;
+      background: var(--surface-black); padding: 48px 48px; text-align: center;
     }
-    footer p { font-size: 12px; color: var(--ink-48); }
+    footer p { font-size: 12px; color: rgba(255,255,255,.25); }
 
     /* ── Mobile Nav ── */
     .g-nav__hamburger {
@@ -1478,7 +1462,7 @@
   <div class="bg-grad"></div>
   <div class="case-title-wrap reveal">
     <span class="case-bg-num">1</span>
-    <h2 class="case-title" style="margin-bottom:0;">1인 제작 게임 '파티랏슈!!'<br>글로벌 런칭</h2>
+    <h2 class="case-title">1인 제작 게임 '파티랏슈!!'<br>글로벌 런칭</h2>
   </div>
   <p class="case-sub reveal reveal-d1">스무 살, 해외 퍼블리셔와의 글로벌 런칭 준비가 전환점이 되었습니다.<br>'효율적이고 리스크를 예방하는 프로세스'에 대한 고민을 하게 된 계기입니다.</p>
 </section>
@@ -1596,7 +1580,7 @@
   <div class="bg-grad"></div>
   <div class="case-title-wrap reveal">
     <span class="case-bg-num">2</span>
-    <h2 class="case-title" style="margin-bottom:0;">팀 프로젝트 기획과<br>G-STAR 전시 총괄</h2>
+    <h2 class="case-title">팀 프로젝트 기획과<br>G-STAR 전시 총괄</h2>
   </div>
   <p class="case-sub reveal reveal-d1">게임디자인학과에서 팀 프로젝트를 총괄했던 경험을 소개합니다.</p>
 </section>
@@ -1700,7 +1684,7 @@
   <div class="bg-grad"></div>
   <div class="case-title-wrap reveal">
     <span class="case-bg-num">3</span>
-    <h2 class="case-title" style="margin-bottom:0;">엔씨 Blade &amp; Soul PM</h2>
+    <h2 class="case-title">엔씨 Blade &amp; Soul PM</h2>
   </div>
   <p class="case-sub reveal reveal-d1">프로젝트의 시작과 끝에 고루 기여하기 위해서는, 현장의 개발 협업 프로세스에 대한 이해가 있어야 한다고 생각했습니다.<br>이에 엔씨의 글로벌 MMORPG 'Blade &amp; Soul' 의 PM으로 재직하였습니다.</p>
 </section>
