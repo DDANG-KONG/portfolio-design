@@ -143,6 +143,17 @@
     .reveal-d4 { transition-delay: .4s; }
     .reveal-d5 { transition-delay: .5s; }
 
+    /* Stagger children of revealed grid containers */
+    .games-grid.in-view .game-card:nth-child(1) { transition-delay: .0s; }
+    .games-grid.in-view .game-card:nth-child(2) { transition-delay: .1s; }
+    .games-grid.in-view .game-card:nth-child(3) { transition-delay: .2s; }
+    .games-grid.in-view .game-card:nth-child(4) { transition-delay: .3s; }
+    .games-grid .game-card {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .65s cubic-bezier(.22,1,.36,1), transform .65s cubic-bezier(.22,1,.36,1);
+    }
+    .games-grid.in-view .game-card { opacity: 1; transform: translateY(0); }
+
     /* ── Type helpers ── */
     .eyebrow {
       font-size: 12px; font-weight: 700; letter-spacing: .12em;
@@ -376,6 +387,14 @@
     }
     .tl-event--highlight { font-weight: 700; color: var(--primary); }
     .tl-event + .tl-event { margin-top: 4px; }
+    .tl-link {
+      display: inline-flex; align-items: center; gap: 3px;
+      font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--primary-dark); text-decoration: none; opacity: .65;
+      transition: opacity .18s; margin-left: 8px; vertical-align: middle;
+    }
+    .tl-link:hover { opacity: 1; }
+    .tl-link svg { width: 9px; height: 9px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
     /* Sections 02–03: transparent so Spline shows through; Spline fades via JS */
     #about, #games { background: transparent; }
@@ -1056,6 +1075,12 @@
       column-gap: 28px; row-gap: 36px;
       width: 100%; max-width: 960px; margin-top: 40px;
     }
+    /* Wide variant: card narrower, gallery wider — for sections 9 & 10 */
+    .games-layout--wide {
+      grid-template-columns: 5fr 7fr;
+      max-width: 1060px;
+      column-gap: 40px;
+    }
     .game-gallery {
       display: flex; flex-direction: column;
       min-width: 0; /* critical: grid item must not grow beyond column */
@@ -1248,8 +1273,8 @@
       <div class="tl-item">
         <span class="tl-year">2017</span>
         <div class="tl-body">
-          <p class="tl-event">'모두를 위한 정통 RPG' 출시 — Play Store 인기 유료 6위</p>
-          <p class="tl-event">BIC Festival 2017 전시작 선정 (SHWA)</p>
+          <p class="tl-event">'모두를 위한 정통 RPG' 출시 — Play Store 인기 유료 6위<a href="https://biz.heraldcorp.com/article/1519349" target="_blank" class="tl-link">기사<svg viewBox="0 0 12 12"><path d="M6.5 1H11v4.5M11 1L5 7M1 3h3.5v8H11V7"/></svg></a></p>
+          <p class="tl-event">BIC Festival 2017 전시작 선정 (SHWA)<a href="https://www.asiatoday.co.kr/kn/view.php?key=20170918001534333" target="_blank" class="tl-link">기사<svg viewBox="0 0 12 12"><path d="M6.5 1H11v4.5M11 1L5 7M1 3h3.5v8H11V7"/></svg></a></p>
         </div>
       </div>
       <div class="tl-item">
@@ -1259,13 +1284,13 @@
       <div class="tl-item">
         <span class="tl-year">2021</span>
         <div class="tl-body">
-          <p class="tl-event">BIC Festival 2021 전시작 선정 (RAISE HELL)</p>
+          <p class="tl-event">BIC Festival 2021 전시작 선정 (RAISE HELL)<a href="https://www.kukinews.com/article/view/kuk202110080176" target="_blank" class="tl-link">기사<svg viewBox="0 0 12 12"><path d="M6.5 1H11v4.5M11 1L5 7M1 3h3.5v8H11V7"/></svg></a></p>
         </div>
       </div>
       <div class="tl-item">
         <span class="tl-year">2022</span>
         <div class="tl-body">
-          <p class="tl-event">'파티랏슈!!' 글로벌 5개국어 런칭</p>
+          <p class="tl-event">'파티랏슈!!' 글로벌 5개국어 런칭<a href="https://www.thisisgame.com/articles/166921" target="_blank" class="tl-link">기사<svg viewBox="0 0 12 12"><path d="M6.5 1H11v4.5M11 1L5 7M1 3h3.5v8H11V7"/></svg></a></p>
           <p class="tl-event">버닝비버 2022 참가</p>
         </div>
       </div>
@@ -1332,110 +1357,57 @@
 </section>
 
 <!-- ════════════════════════════════
-     03  13살 — 혼자 만들기 시작
+     03  MY GAMES
 ════════════════════════════════ -->
 <section id="games">
-  <div class="glow glow--blue" style="width:600px;height:600px;top:80px;left:-220px;opacity:.5;"></div>
+  <div class="glow glow--blue" style="width:700px;height:700px;top:160px;left:-250px;opacity:.5;"></div>
 
-  <p class="eyebrow eyebrow--dark reveal">01</p>
-  <h2 class="headline headline--dark reveal reveal-d1">첫 프로덕트 완성</h2>
-  <p class="subhead subhead--dark reveal reveal-d2">
-    13살 무렵, 쯔꾸르를 통해 각 2년 동안 만든 게임들을 공개함으로써<br>첫 창작 활동을 시작했습니다.
-  </p>
+  <p class="eyebrow eyebrow--dark reveal">My Games</p>
+  <h2 class="headline headline--dark reveal reveal-d1" style="margin-bottom:12px;">10대부터 완성한 게임들</h2>
+  <p class="subhead subhead--dark reveal reveal-d2" style="font-size:clamp(15px,1.8vw,18px);margin-bottom:20px;">하나의 프로덕트를 몇 년씩 이끌며 여러 번 완수했던 경험이,<br>지금의 책임감을 만들었다고 생각합니다.</p>
 
-  <div class="games-layout reveal reveal-d3">
-    <!-- 좌상단: 슬라임 스크럼블 갤러리 -->
-    <div class="game-gallery">
-      <p class="game-gallery__label">슬라임 스크럼블 스크린샷</p>
-      <div class="game-gallery__track" id="g-ss"></div>
-    </div>
-    <!-- 우상단: 슬라임 스크럼블 카드 -->
+  <div class="game-banner reveal reveal-d2">
+    <img src="https://ddang-kong.github.io/portfolio-2026/assets/slide02_img33.png" alt="파티랏슈!! 키아트" style="object-position:center 72%;">
+  </div>
+
+  <div class="games-grid reveal reveal-d3">
     <div class="game-card">
       <div class="game-card__thumb">
         <img src="assets/GameCards/SlimeScramble.png" alt="슬라임 스크럼블">
       </div>
-      <div class="game-card__top"><span class="game-year">2015</span><span class="game-badge">1인 제작</span></div>
+      <div class="game-card__top"><span class="game-year">2015</span></div>
       <h3 class="game-title">슬라임 스크럼블</h3>
-      <p class="game-desc">슬라임이 주인공이 되어 혁명을 일으키는 동료 수집형 RPG 입니다.</p>
+      <p class="game-desc">슬라임이 주인공인 장편 스토리 동료 수집형 RPG.<br>13살부터 2년간 제작.</p>
       <a href="https://namu.wiki/w/%EC%8A%AC%EB%9D%BC%EC%9E%84%20%EC%8A%A4%ED%81%AC%EB%9F%BC%EB%B8%94" target="_blank" class="game-link">나무위키에서 보기 <svg viewBox="0 0 12 12"><path d="M6.5 1H11v4.5M11 1L5 7M1 3h3.5v8H11V7"/></svg></a>
     </div>
-    <!-- 좌하단: 우리 아빠는 용사랍니다 카드 -->
     <div class="game-card">
       <div class="game-card__thumb">
         <img src="assets/GameCards/MydadisaHero.png" alt="우리 아빠는 용사랍니다">
       </div>
       <div class="game-card__top"><span class="game-year">2016</span><span class="game-badge">Steam</span></div>
       <h3 class="game-title">우리 아빠는 용사랍니다</h3>
-      <p class="game-desc">두 명의 주인공과 3막의 스토리로 이루어진 액션 RPG 입니다.</p>
+      <p class="game-desc">두 명의 주인공을 교차하며 플레이하는 액션 RPG.<br>14살부터 2년간 제작, 총 3막 스토리.</p>
       <a href="https://store.steampowered.com/app/3429120" target="_blank" class="game-link">Steam에서 보기 <svg viewBox="0 0 12 12"><path d="M6.5 1H11v4.5M11 1L5 7M1 3h3.5v8H11V7"/></svg></a>
     </div>
-    <!-- 우하단: 우리 아빠는 용사랍니다 갤러리 -->
-    <div class="game-gallery">
-      <p class="game-gallery__label">우리 아빠는 용사랍니다 스크린샷</p>
-      <div class="game-gallery__track" id="g-md"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════════════
-     04  17살 — BIC Festival 2017
-════════════════════════════════ -->
-<section class="bg-parchment">
-  <p class="eyebrow eyebrow--light reveal">02</p>
-  <h2 class="headline headline--light reveal reveal-d1">프로덕트의 성과</h2>
-  <p class="subhead subhead--light reveal reveal-d2">
-    고등학교 무렵, 만든 게임들로 다음과 같은 성과를 냈습니다.
-  </p>
-
-  <div class="games-layout reveal reveal-d3">
-    <!-- 좌상단: SHWA 카드 -->
-    <div class="game-card" style="background:#eaeaec;">
+    <div class="game-card">
       <div class="game-card__thumb">
         <img src="assets/GameCards/SHWA.png" alt="SHWA">
       </div>
-      <div class="game-card__top">
-        <span class="game-year" style="color:var(--ink);">2017</span>
-        <span class="game-badge" style="color:var(--ink);background:rgba(0,0,0,.07);border-color:rgba(0,0,0,.12);">BIC Festival 2017</span>
-      </div>
-      <h3 class="game-title" style="color:var(--ink);">SHWA [ʃwɑː]</h3>
-      <p class="game-desc" style="color:rgba(0,0,0,.55);">신이 되어 세상을 좌지우지 하는 시뮬레이션 게임으로, BIC Festival 2017 전시작에 쯔꾸르 게임 최초로 선정되었습니다.</p>
-      <a href="https://store.steampowered.com/app/3425720/w/" target="_blank" class="game-link" style="color:var(--ink);">Steam에서 보기 <svg viewBox="0 0 12 12"><path d="M6.5 1H11v4.5M11 1L5 7M1 3h3.5v8H11V7"/></svg></a>
+      <div class="game-card__top"><span class="game-year">2017</span><span class="game-badge">BIC Festival</span></div>
+      <h3 class="game-title">SHWA [ʃwɑː]</h3>
+      <p class="game-desc">신이 되어 세상을 구하거나 삭제하는 어드벤처 게임.<br>BIC Festival 2017 쯔꾸르 최초 선정.</p>
+      <a href="https://store.steampowered.com/app/3425720/w/" target="_blank" class="game-link">Steam에서 보기 <svg viewBox="0 0 12 12"><path d="M6.5 1H11v4.5M11 1L5 7M1 3h3.5v8H11V7"/></svg></a>
     </div>
-    <!-- 우상단: SHWA 갤러리 -->
-    <div class="game-gallery game-gallery--light">
-      <p class="game-gallery__label">SHWA 스크린샷</p>
-      <div class="game-gallery__track" id="g-shwa"></div>
-    </div>
-    <!-- 좌하단: RPGforEveryone 갤러리 -->
-    <div class="game-gallery game-gallery--light">
-      <p class="game-gallery__label">모두를 위한 정통 RPG 스크린샷</p>
-      <div class="game-gallery__track" id="g-rpg"></div>
-    </div>
-    <!-- 우하단: 모두를 위한 정통 RPG 카드 -->
-    <div class="game-card" style="background:#eaeaec;">
+    <div class="game-card">
       <div class="game-card__thumb">
         <img src="assets/GameCards/RPGforEveryone.png" alt="모두를 위한 정통 RPG">
       </div>
-      <div class="game-card__top">
-        <span class="game-year" style="color:var(--ink);">2017</span>
-        <span class="game-badge" style="color:var(--ink);background:rgba(0,0,0,.07);border-color:rgba(0,0,0,.12);">인기유료 6위</span>
-      </div>
-      <h3 class="game-title" style="color:var(--ink);">모두를 위한 정통 RPG</h3>
-      <p class="game-desc" style="color:rgba(0,0,0,.55);">게임 제작자가 되어 욕먹지 않는 게임을 출시하는 시뮬레이션 게임으로, Google Play 인기 유료 6위를 달성했습니다.</p>
-      <a href="https://store.steampowered.com/app/3425350/___RPG/" target="_blank" class="game-link" style="color:var(--ink);">Steam에서 보기 <svg viewBox="0 0 12 12"><path d="M6.5 1H11v4.5M11 1L5 7M1 3h3.5v8H11V7"/></svg></a>
+      <div class="game-card__top"><span class="game-year">2017</span><span class="game-badge">인기유료 6위</span></div>
+      <h3 class="game-title">모두를 위한 정통 RPG</h3>
+      <p class="game-desc">개발자가 되어 게임을 만들고 출시하는 시뮬레이션 게임.<br>Google Play 인기 유료 6위 달성.</p>
+      <a href="https://store.steampowered.com/app/3425350/___RPG/" target="_blank" class="game-link">Steam에서 보기 <svg viewBox="0 0 12 12"><path d="M6.5 1H11v4.5M11 1L5 7M1 3h3.5v8H11V7"/></svg></a>
     </div>
   </div>
-
-  <a href="https://www.asiatoday.co.kr/kn/view.php?key=20170918001534333" target="_blank" class="article-link article-link--light reveal reveal-d4">
-    <span class="article-link__icon">📰</span>
-    <span class="article-link__text">아시아투데이 — BIC Festival 2017에 쯔꾸르 게임 최초 선정된 SHWA</span>
-    <svg viewBox="0 0 14 14"><path d="M5 1H1v12h12V9M8 1h5v5M13 1L7 7"/></svg>
-  </a>
-  <a href="https://biz.heraldcorp.com/article/1519349" target="_blank" class="article-link article-link--light reveal reveal-d5" style="margin-top:12px;">
-    <span class="article-link__icon">📰</span>
-    <span class="article-link__text">헤럴드경제 — Google Play 인기 유료 6위 달성한 '모두를 위한 정통 RPG'</span>
-    <svg viewBox="0 0 14 14"><path d="M5 1H1v12h12V9M8 1h5v5M13 1L7 7"/></svg>
-  </a>
 </section>
 
 <!-- ════════════════════════════════
@@ -1444,8 +1416,8 @@
 <section class="case-intro" id="case1">
   <div class="bg-img" style="background-image:url('assets/case1.png');"></div>
   <div class="bg-grad"></div>
-  <h2 class="case-title reveal">1인 제작 게임<br>'파티랏슈!!' 글로벌 런칭</h2>
-  <p class="case-sub reveal reveal-d1">스무 살, 해외 퍼블리셔와의 글로벌 런칭 준비가 전환점이 되었습니다.<br>'효율적이고 리스크를 예방하는 프로세스'에 대한 고민을 하게 된 계기입니다.</p>
+  <h2 class="case-title reveal">1인 제작 게임 '파티랏슈!!'<br>글로벌 런칭</h2>
+  <p class="case-sub reveal reveal-d1">스무 살, 해외 퍼블리셔와의 글로벌 런칭 준비가 전환점이 되었습니다. '효율적이고 리스크를 예방하는 프로세스'에 대한 고민을 하게 된 계기입니다.</p>
 </section>
 
 <!-- ════════════════════════════════
@@ -1525,7 +1497,41 @@
   <h2 class="headline headline--dark reveal reveal-d1">프로세스를<br>처음 설계하다</h2>
   <p class="subhead subhead--dark reveal reveal-d2" style="margin-bottom:0;">1인 제작 환경에서 번역 발주·납품·인게임 적용 전 과정을,<br>국가와 리비전별 빌드를 관리하였습니다.</p>
 
-  <a href="https://www.thisisgame.com/articles/166921" target="_blank" class="article-link reveal reveal-d3" style="margin-top:40px;">
+  <div class="process-list reveal reveal-d3">
+    <div class="process-item process-item--dark">
+      <span class="process-n process-n--dark">01</span>
+      <span class="process-t process-t--dark">번역이 필요한 파일 분류 및 발주</span>
+    </div>
+    <div class="process-item process-item--dark">
+      <span class="process-n process-n--dark">02</span>
+      <span class="process-t process-t--dark">납품 파일 리비전별 관리</span>
+    </div>
+    <div class="process-item process-item--dark">
+      <span class="process-n process-n--dark">03</span>
+      <span class="process-t process-t--dark">국가별 프로젝트 빌드 제작</span>
+    </div>
+    <div class="process-item process-item--dark">
+      <span class="process-n process-n--dark">04</span>
+      <span class="process-t process-t--dark">Steam · STOVE 플랫폼 동시 출시</span>
+    </div>
+  </div>
+
+  <div class="stats-row reveal reveal-d4" style="margin-top:36px;">
+    <div class="stat">
+      <p class="stat__num" data-count="5" data-suffix="개국어">5개국어</p>
+      <p class="stat__label stat__label--dark">로컬라이제이션</p>
+    </div>
+    <div class="stat">
+      <p class="stat__num" data-count="3" data-suffix="년 제작">3년 제작</p>
+      <p class="stat__label stat__label--dark">1인 개발</p>
+    </div>
+    <div class="stat">
+      <p class="stat__num" style="font-size:clamp(18px,2vw,24px);">글로벌<br>동시 런칭</p>
+      <p class="stat__label stat__label--dark">HIKE Inc. 퍼블리싱</p>
+    </div>
+  </div>
+
+  <a href="https://www.thisisgame.com/articles/166921" target="_blank" class="article-link reveal reveal-d5" style="margin-top:40px;">
     <span class="article-link__icon">📰</span>
     <span class="article-link__text">디스이즈게임 — 파티랏슈!! 글로벌 5개국어 런칭 소개 기사</span>
     <svg viewBox="0 0 14 14"><path d="M5 1H1v12h12V9M8 1h5v5M13 1L7 7"/></svg>
@@ -1555,7 +1561,7 @@
     해외 퍼블리셔와의 협업 경험을 기반으로, 기획으로 총괄한<br>팀 프로젝트에서 다음과 같은 성과를 냈습니다.
   </p>
 
-  <div class="games-layout reveal reveal-d3">
+  <div class="games-layout games-layout--wide reveal reveal-d3">
     <div class="game-card">
       <div class="game-card__thumb">
         <img src="assets/GameCards/RASIEHELL.png" alt="RAISE HELL">
@@ -1590,7 +1596,7 @@
     2인 협동 액션 게임인 AHSRAI 의 기획 및 팀장으로, G-STAR 2025 전시를 총괄하였습니다.
   </p>
 
-  <div class="games-layout reveal reveal-d3">
+  <div class="games-layout games-layout--wide reveal reveal-d3">
     <div class="game-card">
       <div class="game-card__thumb">
         <img src="assets/GameCards/AHSRAI.png" alt="AHSRAI">
@@ -1605,26 +1611,33 @@
     </div>
   </div>
 
-  <!-- 수상 + 전시 통계 -->
-  <div class="reveal reveal-d4" style="margin-top:40px;width:100%;max-width:680px;">
-    <a class="article-link" style="cursor:default;">
+  <!-- 트레일러 영상 -->
+  <div class="reveal reveal-d4" style="width:100%;max-width:720px;margin-top:44px;border-radius:14px;overflow:hidden;position:relative;padding-bottom:min(405px, 56.25%);height:0;box-shadow:0 12px 48px rgba(0,0,0,.6);">
+    <iframe src="https://www.youtube.com/embed/J9rMPw8Xd14" title="AHSRAI 트레일러" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+  </div>
+
+  <!-- 수상 -->
+  <div class="reveal reveal-d4" style="margin-top:40px;width:100%;max-width:720px;">
+    <a class="article-link" style="cursor:default;pointer-events:none;">
       <span class="article-link__icon">🏆</span>
-      <span class="article-link__text">한국경제TV 우수작품상 수상작</span>
+      <span class="article-link__text" style="font-weight:600;">한국경제TV 우수작품상 수상작</span>
     </a>
   </div>
 
-  <div class="reveal reveal-d4" style="display:flex;gap:0;width:100%;max-width:680px;margin-top:20px;border:1px solid rgba(255,255,255,.1);border-radius:12px;overflow:hidden;">
-    <div style="flex:1;padding:24px 20px;text-align:center;border-right:1px solid rgba(255,255,255,.1);">
-      <p style="font-size:clamp(28px,3.5vw,38px);font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:6px;background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">850–1,000<span style="font-size:.55em;">명</span></p>
-      <p style="font-size:12px;color:var(--muted);letter-spacing:.02em;">4일간 총 방문객 (약 900명)</p>
+  <!-- G-STAR 전시 통계 -->
+  <p class="eyebrow eyebrow--dark reveal reveal-d4" style="margin-top:36px;margin-bottom:16px;">G-STAR 2025 전시 결과</p>
+  <div class="reveal reveal-d4" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;width:100%;max-width:720px;background:rgba(255,255,255,.1);border-radius:12px;overflow:hidden;">
+    <div style="background:var(--tile-1);padding:28px 16px;text-align:center;">
+      <p style="font-size:clamp(22px,2.8vw,30px);font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:6px;background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">850–1,000</p>
+      <p style="font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--muted);margin-top:4px;">4일간 총 방문객 (약 900명)</p>
     </div>
-    <div style="flex:1;padding:24px 20px;text-align:center;border-right:1px solid rgba(255,255,255,.1);">
-      <p style="font-size:clamp(28px,3.5vw,38px);font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:6px;background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">225<span style="font-size:.55em;">명</span></p>
-      <p style="font-size:12px;color:var(--muted);letter-spacing:.02em;">하루 평균 방문객</p>
+    <div style="background:var(--tile-1);padding:28px 16px;text-align:center;">
+      <p style="font-size:clamp(22px,2.8vw,30px);font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:6px;background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">225명</p>
+      <p style="font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--muted);margin-top:4px;">하루 평균 방문객</p>
     </div>
-    <div style="flex:1;padding:24px 20px;text-align:center;">
-      <p style="font-size:clamp(28px,3.5vw,38px);font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:6px;background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">31<span style="font-size:.55em;">명</span></p>
-      <p style="font-size:12px;color:var(--muted);letter-spacing:.02em;">시간당 평균 방문객</p>
+    <div style="background:var(--tile-1);padding:28px 16px;text-align:center;">
+      <p style="font-size:clamp(22px,2.8vw,30px);font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:6px;background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">31명</p>
+      <p style="font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--muted);margin-top:4px;">시간당 평균 방문객</p>
     </div>
   </div>
 </section>
@@ -1632,7 +1645,7 @@
 <!-- ════════════════════════════════
      14b  AHSRAI — 기획서 디자인 갤러리
 ════════════════════════════════ -->
-<section class="bg-dark" style="overflow:visible;">
+<section style="overflow:visible;">
   <div class="glow glow--blue glow--tl" style="opacity:.3;"></div>
 
   <p class="eyebrow eyebrow--dark reveal">기획서</p>
@@ -1650,7 +1663,7 @@
   <div class="bg-img" style="background-image:url('assets/case3.png');"></div>
   <div class="bg-grad"></div>
   <h2 class="case-title reveal">엔씨 Blade &amp; Soul PM</h2>
-  <p class="case-sub reveal reveal-d1">엔씨의 글로벌 MMORPG 'Blade &amp; Soul' 의 PM으로 재직하였습니다.<br>거기서의 업무 성과를 소개합니다.</p>
+  <p class="case-sub reveal reveal-d1">엔씨의 글로벌 MMORPG 'Blade &amp; Soul' 의 PM으로 재직하였습니다. 거기서의 업무 성과를 소개합니다.</p>
 </section>
 
 <!-- ════════════════════════════════
@@ -2064,7 +2077,9 @@ document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el
   let gamesY = gamesEl.getBoundingClientRect().top + window.scrollY;
 
   function update() {
-    const progress = Math.max(0, Math.min(1, (window.scrollY / gamesY) * 2.2));
+    const raw = Math.max(0, Math.min(1, window.scrollY / gamesY));
+    /* ease-in √ curve: at About midpoint ~28% visible, fully gone at Games */
+    const progress = Math.pow(raw, 0.5);
     splineEl.style.opacity = (1 - progress).toFixed(3);
   }
 
@@ -2319,27 +2334,6 @@ function initImgGallery({ galleryId, statusId, images = [], thumbHeight = 160 })
 }
 
 /* ── 갤러리 초기화 ── */
-initImgGallery({ galleryId: 'g-ss', thumbHeight: 240, images: [
-  'assets/Section3-SlimeScramble/1.png','assets/Section3-SlimeScramble/2.png',
-  'assets/Section3-SlimeScramble/3.png','assets/Section3-SlimeScramble/4.png',
-  'assets/Section3-SlimeScramble/5.png','assets/Section3-SlimeScramble/6.png',
-  'assets/Section3-SlimeScramble/7.png','assets/Section3-SlimeScramble/8.png'
-]});
-initImgGallery({ galleryId: 'g-md', thumbHeight: 240, images: [
-  'assets/Section3-MyDadisaHero/1.png','assets/Section3-MyDadisaHero/2.png',
-  'assets/Section3-MyDadisaHero/3.png','assets/Section3-MyDadisaHero/4.png',
-  'assets/Section3-MyDadisaHero/5.png','assets/Section3-MyDadisaHero/6.png',
-  'assets/Section3-MyDadisaHero/7.png'
-]});
-initImgGallery({ galleryId: 'g-shwa', thumbHeight: 240, images: [
-  'assets/Section4-SHWA/1.png','assets/Section4-SHWA/2.png',
-  'assets/Section4-SHWA/3.png','assets/Section4-SHWA/4.png',
-  'assets/Section4-SHWA/5.png','assets/Section4-SHWA/6.png'
-]});
-initImgGallery({ galleryId: 'g-rpg', thumbHeight: 240, images: [
-  'assets/Section4-RPGforEveryone/1.png','assets/Section4-RPGforEveryone/2.png',
-  'assets/Section4-RPGforEveryone/3.png','assets/Section4-RPGforEveryone/4.png'
-]});
 initImgGallery({ galleryId: 'g-pr', thumbHeight: 240, images: [
   'assets/Section6-Partyrush/1.png','assets/Section6-Partyrush/2.png',
   'assets/Section6-Partyrush/3.png','assets/Section6-Partyrush/4.jpg',
