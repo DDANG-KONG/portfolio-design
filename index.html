@@ -92,8 +92,10 @@
       display: flex; flex-direction: column;
       justify-content: center; align-items: center;
       padding: 200px 48px 180px;
-      text-align: center; position: relative; overflow: hidden;
+      text-align: center; position: relative; overflow: visible;
     }
+    /* Prevent horizontal scroll from glows that extend beyond section edges */
+    body { overflow-x: hidden; }
 
     .bg-black     { background: var(--surface-black); }
     .bg-dark      { background: var(--tile-1); }
@@ -518,10 +520,10 @@
     }
     .case-sub {
       font-size: 20px; font-weight: 300; color: rgba(255,255,255,.9);
-      line-height: 1.65; max-width: 600px;
+      line-height: 1.65; max-width: 860px;
       text-shadow: 0 1px 12px rgba(0,0,0,.8);
     }
-    .case-intro { justify-content: flex-end; padding-bottom: 88px; }
+    .case-intro { justify-content: flex-end; padding-bottom: 88px; overflow: hidden; }
     .case-intro .bg-grad {
       background: linear-gradient(to bottom,
         rgba(0,0,0,.25) 0%, rgba(0,0,0,.15) 45%, rgba(0,0,0,.78) 100%);
