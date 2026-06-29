@@ -698,6 +698,7 @@
     .pillar {
       background: var(--tile-2); padding: 52px 40px; text-align: left;
       position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
     }
     .pillar__img { width: 44px; height: 44px; object-fit: contain; margin-bottom: 20px; display: block; filter: invert(1) opacity(.65); }
     .pillar__img--lg { width: 72px; height: 72px; margin-bottom: 12px; }
@@ -705,6 +706,19 @@
     .pillar__title { font-size: 21px; font-weight: 700; color: var(--on-dark); letter-spacing: -.02em; line-height: 1.2; margin-bottom: 14px; }
     .pillar__desc  { font-size: 15px; color: var(--muted); line-height: 1.6; letter-spacing: -.2px; }
     .pillar__tag   { display: inline-block; margin-top: 20px; font-size: 13px; font-weight: 600; color: var(--primary-dark); }
+    /* 강점 선언형: 상단 배지 + 하단 출처 캡션 */
+    .pillar__tag--top {
+      align-self: flex-start; margin-top: 0; margin-bottom: 18px;
+      padding: 5px 12px; border-radius: 999px;
+      background: rgba(41,151,255,.12); border: 1px solid rgba(41,151,255,.25);
+      font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    }
+    .pillar .pillar__since:last-child {
+      margin-top: auto; margin-bottom: 0; padding-top: 20px;
+      color: var(--ink-48); text-transform: none; letter-spacing: .01em; font-weight: 600;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+    .pillar__desc + .pillar__since { margin-top: auto; }
 
     /* ════════════════════════════
        CLOSING
@@ -1375,7 +1389,7 @@
     .pillar__img { transition: transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s; }
     .pillar:hover .pillar__img { transform: scale(1.04); box-shadow: 0 16px 48px rgba(0,0,0,.4); }
     .pillar__tag { transition: color .3s, letter-spacing .3s; }
-    .pillar:hover .pillar__tag { color: var(--primary-dark); letter-spacing: .02em; }
+    .pillar:hover .pillar__tag--top { background: rgba(41,151,255,.2); border-color: rgba(41,151,255,.45); color: #fff; }
 
     /* about-lead 단어 강조 밑줄 효과는 reveal 후 자연스레 */
     @media (prefers-reduced-motion: reduce) {
@@ -1416,6 +1430,97 @@
 
     /* ── headline 등장 시 살짝 더 부드럽게 ── */
     .headline.reveal { transition: opacity .85s cubic-bezier(.22,1,.36,1), transform .85s cubic-bezier(.22,1,.36,1); }
+
+    /* ════════════════════════════
+       SPLIT DIAGRAM (분기: 1 → N 기준 분류)
+    ════════════════════════════ */
+    .split-diagram {
+      display: flex; align-items: stretch; justify-content: center;
+      gap: 0; max-width: 940px; width: 100%; margin-top: 8px;
+    }
+    .split-source {
+      flex: 0 0 auto; align-self: center;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 6px; padding: 24px 26px; border-radius: 16px;
+      background: var(--ink); color: var(--on-dark); text-align: center;
+      box-shadow: 0 12px 32px rgba(0,0,0,.18);
+    }
+    .split-source__num { font-size: clamp(28px,3.4vw,40px); font-weight: 800; letter-spacing: -.03em; line-height: 1; }
+    .split-source__label { font-size: 12px; font-weight: 600; color: rgba(255,255,255,.7); letter-spacing: -.1px; }
+    .split-connector {
+      flex: 0 0 56px; position: relative; align-self: stretch; min-height: 100%;
+    }
+    .split-connector svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+    .split-branches {
+      flex: 1 1 auto; display: flex; flex-direction: column; gap: 14px; max-width: 560px;
+    }
+    .split-branch {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 18px 22px; border-radius: 12px;
+      background: var(--canvas); border: 1px solid var(--hairline);
+      transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s, border-color .3s;
+    }
+    .split-branch:hover { transform: translateX(6px); box-shadow: 0 10px 28px rgba(0,0,0,.1); border-color: rgba(0,102,204,.3); }
+    .split-branch__dot {
+      flex: 0 0 auto; width: 30px; height: 30px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; background: rgba(0,102,204,.1);
+    }
+    .split-branch__body { text-align: left; }
+    .split-branch__t { font-size: 14.5px; font-weight: 700; color: var(--ink); letter-spacing: -.2px; margin-bottom: 3px; }
+    .split-branch__d { font-size: 13px; line-height: 1.5; color: var(--ink-48); letter-spacing: -.2px; }
+    @media (max-width: 760px) {
+      .split-diagram { flex-direction: column; align-items: center; gap: 16px; }
+      .split-connector { display: none; }
+      .split-branches { width: 100%; }
+    }
+
+    /* ════════════════════════════
+       PIPELINE (입력 → 분기 처리 → 출력)
+    ════════════════════════════ */
+    .pipeline {
+      display: flex; align-items: center; justify-content: center;
+      gap: 20px; max-width: 1040px; width: 100%; margin-top: 8px; flex-wrap: nowrap;
+    }
+    .pl-node {
+      flex: 0 0 auto;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      padding: 22px 20px; border-radius: 16px; text-align: center; min-width: 132px;
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
+      transition: transform .3s cubic-bezier(.22,1,.36,1), border-color .3s, background .3s;
+    }
+    .pl-node:hover { transform: translateY(-4px); border-color: rgba(41,151,255,.35); background: rgba(255,255,255,.06); }
+    .pl-node__icon { font-size: 26px; line-height: 1; }
+    .pl-node__t { font-size: 14px; font-weight: 700; color: var(--on-dark); letter-spacing: -.2px; }
+    .pl-node__d { font-size: 12px; color: var(--muted); letter-spacing: -.2px; }
+    .pl-langs { flex: 0 1 360px; display: flex; flex-direction: column; gap: 9px; }
+    .pl-lang {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 16px; border-radius: 10px;
+      background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08);
+      font-size: 13.5px; font-weight: 600; color: var(--on-dark); letter-spacing: -.1px;
+      transition: transform .3s cubic-bezier(.22,1,.36,1), background .3s, border-color .3s;
+    }
+    .pl-lang:hover { transform: scale(1.02); background: rgba(41,151,255,.08); border-color: rgba(41,151,255,.25); }
+    .pl-lang__flag { font-size: 18px; line-height: 1; }
+    .pl-lang__bar { flex: 1; height: 5px; border-radius: 99px; background: rgba(255,255,255,.08); overflow: hidden; position: relative; }
+    .pl-lang__fill {
+      position: absolute; inset: 0; transform-origin: left center; transform: scaleX(0);
+      background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+      transition: transform .8s cubic-bezier(.22,1,.36,1);
+    }
+    .in-view .pl-lang__fill, .pipeline.in-view .pl-lang__fill { transform: scaleX(1); }
+    .pl-langs .pl-lang:nth-child(1) .pl-lang__fill { transition-delay: .05s; }
+    .pl-langs .pl-lang:nth-child(2) .pl-lang__fill { transition-delay: .15s; }
+    .pl-langs .pl-lang:nth-child(3) .pl-lang__fill { transition-delay: .25s; }
+    .pl-langs .pl-lang:nth-child(4) .pl-lang__fill { transition-delay: .35s; }
+    .pl-langs .pl-lang:nth-child(5) .pl-lang__fill { transition-delay: .45s; }
+    .pl-arrow { flex: 0 0 auto; color: var(--primary-dark); font-size: 20px; display: flex; align-items: center; justify-content: center; }
+    @media (max-width: 820px) {
+      .pipeline { flex-direction: column; gap: 16px; }
+      .pl-arrow { transform: rotate(90deg); }
+      .pl-langs { width: 100%; max-width: 320px; flex-basis: auto; }
+    }
 
     /* ════════════════════════════
        LESSON BLOCK (케이스 간 연결 회고)
@@ -1585,7 +1690,7 @@
   <div class="cover__content" id="coverContent">
     <p class="cover__kicker reveal">Portfolio 2026</p>
     <h1 class="cover__name reveal reveal-d1">윤세찬</h1>
-    <p class="cover__tagline reveal reveal-d2">혼자 게임을 만들던 아이가,<br>지금까지 걸어온 길</p>
+    <p class="cover__tagline reveal reveal-d2">혼자 만들던 사람에서,<br>함께 만드는 사람으로</p>
   </div>
 
   <div class="cover__contacts reveal reveal-d3">
@@ -1608,8 +1713,8 @@
      ╚══════════════════════════════════════════╝ -->
 <section class="about-section" id="about">
   <p class="eyebrow eyebrow--dark reveal">About Me</p>
-  <h2 class="about-lead reveal reveal-d1">게임이 만들어지는 모든 과정을<br>가까이서 겪어온 사람입니다</h2>
-  <p class="about-lead-sub reveal reveal-d2">10대에 혼자 게임을 만들어 출시하던 때부터, 팀을 이끌어 전시까지 끌고 가고, 대형 라이브의 개발 과정을 관리하기까지. 기획·개발·운영의 경계를 넘나들며 '하나의 게임이 세상에 나오기까지'를 여러 자리에서 경험했습니다.</p>
+  <h2 class="about-lead reveal reveal-d1">프로덕트가 만들어지는 과정을<br>여러 자리에서 겪어왔습니다</h2>
+  <p class="about-lead-sub reveal reveal-d2">10대에 혼자 게임을 만들어 출시했고, 팀을 꾸려 전시를 준비했고, 지금은 대형 라이브 서비스의 개발을 관리하고 있습니다. 기획과 개발, 운영을 오가며 하나의 결과물이 사람들에게 닿기까지를 가까이서 봐왔습니다.</p>
 
   <div class="about-inner">
     <div class="timeline reveal reveal-d2">
@@ -1824,18 +1929,40 @@
   <h2 class="headline headline--light reveal reveal-d1">흩어진 리소스를<br>번역할 수 있게 정리하다</h2>
   <p class="body body--light reveal reveal-d2" style="text-align:center;">1인 제작 게임이라 리소스가 체계 없이 흩어져 있었습니다.<br>번역이 필요한 텍스트와 그렇지 않은 것을 먼저 갈라내는 일부터 시작했고, 총 <strong>3만 줄</strong>의 인게임 텍스트를 기준에 따라 분류했습니다.</p>
 
-  <div class="process-list reveal reveal-d3">
-    <div class="process-item process-item--light">
-      <span class="process-n process-n--light">01</span>
-      <span class="process-t process-t--light">번역 대상 여부로 1차 분류 — 시스템 텍스트와 번역이 필요 없는 데이터를 먼저 분리</span>
+  <div class="split-diagram reveal reveal-d3">
+    <div class="split-source">
+      <span class="split-source__num">3만 줄</span>
+      <span class="split-source__label">인게임 텍스트 · 리소스</span>
     </div>
-    <div class="process-item process-item--light">
-      <span class="process-n process-n--light">02</span>
-      <span class="process-t process-t--light">이미지에 박힌 텍스트(아트 리소스)는 따로 관리 — 번역 후 재작업이 필요한 항목으로 구분</span>
+    <div class="split-connector" aria-hidden="true">
+      <svg viewBox="0 0 56 220" preserveAspectRatio="none">
+        <path d="M0 110 C28 110, 28 38, 56 38" fill="none" stroke="rgba(0,102,204,.35)" stroke-width="2"/>
+        <path d="M0 110 C28 110, 28 110, 56 110" fill="none" stroke="rgba(0,102,204,.35)" stroke-width="2"/>
+        <path d="M0 110 C28 110, 28 182, 56 182" fill="none" stroke="rgba(0,102,204,.35)" stroke-width="2"/>
+      </svg>
     </div>
-    <div class="process-item process-item--light">
-      <span class="process-n process-n--light">03</span>
-      <span class="process-t process-t--light">언어권별로 길이가 달라지는 UI 텍스트를 식별 — 출시 후 깨짐을 막기 위해 우선 점검 대상으로 표시</span>
+    <div class="split-branches">
+      <div class="split-branch">
+        <span class="split-branch__dot">🔤</span>
+        <div class="split-branch__body">
+          <p class="split-branch__t">번역 대상 텍스트</p>
+          <p class="split-branch__d">시스템 텍스트·내부 데이터와 분리해, 번역이 필요한 것만 따로 모았습니다.</p>
+        </div>
+      </div>
+      <div class="split-branch">
+        <span class="split-branch__dot">🖼️</span>
+        <div class="split-branch__body">
+          <p class="split-branch__t">이미지에 박힌 텍스트</p>
+          <p class="split-branch__d">번역 후 재작업이 필요한 아트 리소스로 구분해 별도 관리했습니다.</p>
+        </div>
+      </div>
+      <div class="split-branch">
+        <span class="split-branch__dot">📐</span>
+        <div class="split-branch__body">
+          <p class="split-branch__t">길이가 변하는 UI 텍스트</p>
+          <p class="split-branch__d">언어권별로 길이가 달라지는 항목은 출시 후 깨짐을 막기 위해 우선 점검 대상으로 표시했습니다.</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1855,24 +1982,31 @@
   <h2 class="headline headline--dark reveal reveal-d1">프로세스를<br>처음 설계하다</h2>
   <p class="subhead subhead--dark reveal reveal-d2" style="margin-bottom:0;">1인 제작 환경에서 번역 발주·납품·인게임 적용 전 과정을,<br>국가와 리비전별 빌드를 관리하였습니다.</p>
 
-  <div class="process-list reveal reveal-d3">
-    <div class="process-item process-item--dark">
-      <span class="process-n process-n--dark">01</span>
-      <span class="process-t process-t--dark">번역이 필요한 파일 분류 및 발주</span>
+  <div class="pipeline reveal reveal-d3">
+    <div class="pl-node">
+      <span class="pl-node__icon">📦</span>
+      <span class="pl-node__t">원본 빌드</span>
+      <span class="pl-node__d">1인 제작 게임</span>
     </div>
-    <div class="process-item process-item--dark">
-      <span class="process-n process-n--dark">02</span>
-      <span class="process-t process-t--dark">납품 파일 리비전별 관리</span>
+    <div class="pl-arrow">→</div>
+    <div class="pl-langs">
+      <div class="pl-lang"><span class="pl-lang__flag">🇰🇷</span> 한국어 <span class="pl-lang__bar"><span class="pl-lang__fill"></span></span></div>
+      <div class="pl-lang"><span class="pl-lang__flag">🇨🇳</span> 중국어(간체) <span class="pl-lang__bar"><span class="pl-lang__fill"></span></span></div>
+      <div class="pl-lang"><span class="pl-lang__flag">🇹🇼</span> 중국어(번체) <span class="pl-lang__bar"><span class="pl-lang__fill"></span></span></div>
+      <div class="pl-lang"><span class="pl-lang__flag">🇺🇸</span> 영어 <span class="pl-lang__bar"><span class="pl-lang__fill"></span></span></div>
+      <div class="pl-lang"><span class="pl-lang__flag">🇯🇵</span> 일본어 <span class="pl-lang__bar"><span class="pl-lang__fill"></span></span></div>
     </div>
-    <div class="process-item process-item--dark">
-      <span class="process-n process-n--dark">03</span>
-      <span class="process-t process-t--dark">국가별 프로젝트 빌드 제작</span>
-    </div>
-    <div class="process-item process-item--dark">
-      <span class="process-n process-n--dark">04</span>
-      <span class="process-t process-t--dark">Steam · STOVE 플랫폼 동시 출시</span>
+    <div class="pl-arrow">→</div>
+    <div class="pl-node">
+      <span class="pl-node__icon">🚀</span>
+      <span class="pl-node__t">동시 출시</span>
+      <span class="pl-node__d">Steam · STOVE</span>
     </div>
   </div>
+
+  <p class="body body--dark reveal reveal-d3" style="text-align:center;max-width:900px;margin-top:32px;color:var(--ink-48);font-size:14px;">
+    하나의 원본을 5개 언어 빌드로 나눠, 발주 · 납품 · 리비전 관리 · 인게임 적용을 혼자 전부 맡았습니다.
+  </p>
 
   <a href="https://www.thisisgame.com/articles/166921" target="_blank" class="article-link reveal reveal-d4" style="margin-top:40px;">
     <span class="article-link__icon">📰</span>
@@ -2378,38 +2512,38 @@
   <div class="glow glow--purple glow--br"></div>
 
   <p class="eyebrow eyebrow--dark reveal">그래서 저는</p>
-  <h2 class="headline headline--dark reveal reveal-d1">만드는 일도, 잇는 일도<br>해본 사람입니다</h2>
+  <h2 class="headline headline--dark reveal reveal-d1">저는 이런 강점을<br>가진 사람입니다</h2>
   <p class="subhead subhead--dark reveal reveal-d2" style="max-width:1100px;margin-bottom:8px;">
-    혼자 만들던 시절부터 팀을 이끌던 때, 대형 라이브를 관리하던 지금까지. 매번 부딪힌 건 결국 사람과 사람 사이를 잇는 일이었습니다.<br>
-    좋은 기획을 떠올리는 것만큼, 그것이 결과물로 나오도록 만드는 일에 진심입니다.
+    혼자 만들던 시절부터 팀을 이끌던 때, 대형 라이브를 관리하던 지금까지.<br>
+    서로 다른 자리에서 일하며 세 가지 강점을 단단하게 다졌습니다.
   </p>
 
   <div class="pillars">
     <div class="pillar reveal reveal-d2">
       <img class="pillar__img pillar__img--lg" src="https://ddang-kong.github.io/portfolio-2026/assets/slide15_img03.png" alt="">
-      <p class="pillar__since">10대 인디게임 제작자</p>
-      <h3 class="pillar__title">혼자 끝까지<br>만들어봤기에</h3>
-      <p class="pillar__desc">기획서를 읽고 무엇을 만들려는지 빠르게 파악합니다.</p>
-      <span class="pillar__tag">→ 개발 이해도</span>
+      <span class="pillar__tag pillar__tag--top">강점 01</span>
+      <h3 class="pillar__title">만드는 쪽의 언어를<br>이해합니다</h3>
+      <p class="pillar__desc">기획부터 개발, 출시까지 직접 해봤기에 기획서를 읽고 무엇을 만들려는지 빠르게 파악하고, 만드는 사람들과 같은 언어로 이야기합니다.</p>
+      <span class="pillar__since">10대부터 1인 제작 · 출시</span>
     </div>
     <div class="pillar reveal reveal-d3">
       <img class="pillar__img" src="https://ddang-kong.github.io/portfolio-2026/assets/slide15_img05.png" alt="">
-      <p class="pillar__since">글로벌 5개국어 출시 · 팀 프로젝트</p>
-      <h3 class="pillar__title">협업으로<br>완수해봤기에</h3>
-      <p class="pillar__desc">프로세스가 없을 때 어떤 리스크가 생기는지 겪어서 압니다.</p>
-      <span class="pillar__tag">→ 리스크 관리</span>
+      <span class="pillar__tag pillar__tag--top">강점 02</span>
+      <h3 class="pillar__title">리스크를 미리<br>내다봅니다</h3>
+      <p class="pillar__desc">프로세스가 없을 때 어떤 일이 터지는지 직접 겪었습니다. 그래서 일이 커지기 전에 병목과 위험을 먼저 짚고 대비합니다.</p>
+      <span class="pillar__since">글로벌 5개국어 출시 · 팀 프로젝트</span>
     </div>
     <div class="pillar reveal reveal-d4">
       <img class="pillar__img" src="https://ddang-kong.github.io/portfolio-2026/assets/slide15_img06.png" alt="">
-      <p class="pillar__since">엔씨 라이브 운영</p>
-      <h3 class="pillar__title">규칙과 자동화로<br>풀어봤기에</h3>
-      <p class="pillar__desc">문제를 규칙으로 바꾸고, 필요하면 직접 도구를 만들어 자리 잡게 합니다.</p>
-      <span class="pillar__tag">→ 기술 주도 개선</span>
+      <span class="pillar__tag pillar__tag--top">강점 03</span>
+      <h3 class="pillar__title">문제를 직접<br>풀어냅니다</h3>
+      <p class="pillar__desc">막연한 문제를 또렷한 규칙으로 바꾸고, 필요하면 도구까지 직접 만들어 팀에 자리 잡게 합니다. 새로운 기술을 익히는 데 망설이지 않습니다.</p>
+      <span class="pillar__since">엔씨 라이브 운영 · 자동화 도입</span>
     </div>
   </div>
 
   <p class="body reveal reveal-d5" style="text-align:center;margin-top:48px;font-weight:700;color:var(--on-dark);max-width:900px;">
-    어느 자리에 있든, 게임이 흔들리지 않고 끝까지 만들어지도록 돕겠습니다.
+    어느 자리에 있든, 프로덕트가 흔들리지 않고 끝까지 완성되도록 돕겠습니다.
   </p>
 </section>
 
@@ -2424,7 +2558,7 @@
   <div class="glow glow--blue glow--tl" style="top:80px;"></div>
   <div class="glow glow--purple glow--br"></div>
 
-  <p class="closing__sub reveal" style="margin-bottom:40px;">혼자 게임을 만들던 마음을 잊지 않고,<br>그 즐거움이 끝까지 지켜지도록 돕겠습니다.</p>
+  <p class="closing__sub reveal" style="margin-bottom:40px;">혼자 무언가를 만들어내던 그 마음을 잊지 않고,<br>끝까지 좋은 결과물을 만드는 데 보태겠습니다.</p>
   <h2 class="closing__h reveal reveal-d1">감사합니다.</h2>
   <div class="cta-row reveal reveal-d2" style="margin-top:56px;">
     <a href="tel:01022660219" class="pill">010 – 2266 – 0219</a>
